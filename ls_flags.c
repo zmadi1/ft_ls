@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 11:50:14 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/13 12:47:01 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/19 16:05:21 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,72 +14,70 @@
 
 int		check_flags(char *str,t_flags *flags)
 {
-	flags = (t_flags*)malloc(sizeof(t_flags));
-
 	if (str[0] == '-')
 	{
 			if (ft_strchr(str,'l'))
 			{
-				flags->flag_l = 1;
+				flags->flag_l = '1';
 				printf ("l_flag");
 			}
-			else if (ft_strchr(str,'a'))
+			if (ft_strchr(str,'a'))
 			{
-				flags->flag_a = 1;
+				flags->flag_a = '1';
 				printf("a_flag");
 			}
-			else if (ft_strchr(str,'r'))
+			if (ft_strchr(str,'r'))
 			{
-				flags->flag_r = 1;
+				flags->flag_r = '1';
 				printf("r_flag");
 			}
-			else if (ft_strchr(str,'t'))
+			if (ft_strchr(str,'t'))
 			{
-				flags->flag_t = 1;
+				flags->flag_t = '1';
 				printf("t_flag");
 			}
-			else if (ft_strchr(str,'o'))
+			if (ft_strchr(str,'o'))
 			{
-				flags->flag_o = 1;
+				flags->flag_o = '1';
 				printf("o_flag");
 			}
-			else if (ft_strchr(str,'R'))
+			if (ft_strchr(str,'R'))
 			{
-				flags->flag_R = 1;
+				flags->flag_R = '1';
 				printf("R_flag");
 			}
-			else if (ft_strchr(str,'n'))
+			if (ft_strchr(str,'n'))
 			{
-				flags->flag_n = 1;
+				flags->flag_n = '1';
 				printf("n_flag");
 			}
-			else if (ft_strchr(str,'g'))
+			if (ft_strchr(str,'g'))
 			{
-				flags->flag_g = 1;
+				flags->flag_g = '1';
 				printf("g_flag");
 			}
 			printf("\n");
 	}
-	free(flags);
-	return 0;
+	return 1;
 }
 
-int		ls_error_handling(char *str, t_flags *flag)
+int		ls_flag_error_handling(char *str, t_flags *flag)
 {
 	char *temp;
 	
 	temp = str;
 
-	while (temp[0] != '-' || (temp[0] == '-' && !temp[1]))
+	if (temp[0] != '-' || (temp[0] == '-' && !temp[1]))
 		return 0;
-	while (temp[0] == '-' && temp[1] == '-' && !temp[2])
+	if (temp[0] == '-' && temp[1] == '-' && !temp[2])
 		return 1;
 	if (temp[0] == '-')
 	{
 		temp++;
 		while (*temp == 'l' || *temp == 'r' || *temp == 'R' ||
-			   	*temp == 'o' || *temp == 'n' || *temp == 'g' ||
-			   	*temp == 'a' || *temp == 't')
+		
+				*temp == 'o' || *temp == 'n' || *temp == 'g' ||
+				*temp == 'a' || *temp == 't')
 		{
 			
 			temp++;
@@ -92,12 +90,13 @@ int		ls_error_handling(char *str, t_flags *flag)
 			ft_putchar(*temp);
 			ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
 			exit(0);
-			}
-			else
-			{
-							check_flags(str,flag);
-			}
-				
 		}
-	return 0;
+		else
+		{
+			check_flags(str,flag);
+		}
+	}
+	return (1);
 }
+
+
