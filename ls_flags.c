@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 11:50:14 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/19 16:05:21 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/20 10:43:37 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int		ls_flag_error_handling(char *str, t_flags *flag)
 			temp++;
 			
 		}
-		printf("%c\n", *temp);
 		if (*temp)
 		{
 			ft_putstr("ls: invalid option --");

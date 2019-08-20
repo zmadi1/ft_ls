@@ -6,10 +6,32 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 08:38:13 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/19 16:12:22 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/20 10:20:42 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my_flags.h"
+
+void	ft_space(int i, int b)
+{
+	int		a;
+
+	a = 0;
+	while (a < (b - i))
+	{
+		ft_putchar(' ');
+		a++;
+	}
+}
+
+int		ft_count_nbr(int i)
+{
+	int		a;
+
+	a = 0;
+	while (i /= 10)
+		a++;
+	return (a);
+}
 
 void	ft_rights(struct stat mode)
 {
@@ -37,10 +59,10 @@ void	handle_date(struct stat s, char *ptr)
 
 	date = ft_strsplit(ctime(&s.st_mtimespec.tv_sec), ' ');
 	ft_putstr(date[1]);
-	ft_putchar(' ');
+	ft_putstr(" ");
 	!date[2][1] ? ft_putchar(' ') : 0;
 	ft_putstr(date[2]);
-	ft_putchar(' ');
+	ft_putstr(" ");
 	date[3][5] = '\0';
 	date[4][4] = '\0';
 	ft_putstr(date[3]);
@@ -53,7 +75,7 @@ void	group_rights(struct stat ptr, t_flags *flag)
 
 	grp = getgrgid(ptr.st_gid);
 	ft_putstr(grp->gr_name);
-	ft_putchar(' ');
+	ft_space(ft_count_nbr(ptr.st_size), 6);
 	ft_putnbr(ptr.st_size);
 	ft_putchar(' ');
 }
@@ -64,7 +86,7 @@ int usi_rights(char	*ptr, t_flags *flag)
 	struct passwd *parent;
 
 	lstat(ft_strjoin("./", ptr), &user);
-	ft_putchar(' ');
+	ft_space(ft_count_nbr(user.st_nlink), 4);
 	ft_putnbr(user.st_nlink);
 	ft_putchar(' ');
 	parent = getpwuid(user.st_uid);
@@ -83,7 +105,6 @@ void ft_file_info(char **ptr, t_flags *flag)
 	struct stat checker;
 	int			i;
 
-	ft_putendl("Im here");
 	i = 0;
 	while (ptr[i] != NULL)
 	{

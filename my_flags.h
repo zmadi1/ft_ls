@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 13:50:10 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/19 15:07:13 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/20 10:58:00 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ typedef struct  s_flags
 	char  flag_g;
 
 }				t_flags;
-
+int			ft_count_array(char **new);
+char		**ft_reverse(char **new);
 int			count();
-char		**ft_content(char **new);
+void		ft_sort(char **new);
+char		**ft_content(char **new, t_flags *flag);
 void		ft_rights(struct stat mode);
 void		handle_date(struct stat s, char  *ptr);
 void		group_rights(struct stat ptr, t_flags *flag);

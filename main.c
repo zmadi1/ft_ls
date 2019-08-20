@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 10:35:20 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/19 16:08:43 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/20 11:11:39 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ int		main(int ac, char **av)
 	struct	dirent 	*files;
 	int		i;
 	
-	new = ft_content(new);
 	flag = ft_flag_ini();
-	i = ls_flag_error_handling(av[1], flag);
-	if (flag->flag_l == '1')
-		ft_file_info(new, flag);
+	if (ac > 1)
+		i = ls_flag_error_handling(av[1], flag);
+	new = ft_content(new, flag);
+	i = 0;
+	if (ac == 1 || flag->flag_l == '0')
+		while (new[i] != NULL)
+			ft_putendl(new[i++]);
 	return (0);
 }
