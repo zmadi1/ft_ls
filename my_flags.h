@@ -54,5 +54,7 @@ void		ft_file_info(char **ptr, t_flags *flag);
 int			check_flags(char *str, t_flags *flags);
 int			ls_flag_error_handling(char *str, t_flags *flag);
 int 		ft_opendir(char *str);
+void		ft_space(int i, int b);
+int		ft_count_nbr(int i);
 
 #endif

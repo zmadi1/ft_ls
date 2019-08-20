@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "my_flags.h"
 
-void	ft_space(int i, int b)
+/*void	ft_space(int i, int b)
 {
 	int		a;
 
@@ -32,7 +32,7 @@ int		ft_count_nbr(int i)
 		a++;
 	return (a);
 }
-
+*/
 void	ft_rights(struct stat mode)
 {
 	char *i;
@@ -57,7 +57,7 @@ void	handle_date(struct stat s, char *ptr)
 {
 	char **date;
 
-	date = ft_strsplit(ctime(&s.st_mtimespec.tv_sec), ' ');
+	date = ft_strsplit(ctime(&s.st_mtim.tv_sec), ' ');
 	ft_putstr(date[1]);
 	ft_putstr(" ");
 	!date[2][1] ? ft_putchar(' ') : 0;
