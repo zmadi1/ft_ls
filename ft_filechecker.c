@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 08:38:13 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/20 10:20:42 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/21 12:05:39 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my_flags.h"
@@ -53,11 +53,11 @@ void	ft_rights(struct stat mode)
 	free(i);
 }
 
-void	handle_date(struct stat s, char *ptr)
+void	handle_date(struct stat s)
 {
 	char **date;
 
-	date = ft_strsplit(ctime(&s.st_mtim.tv_sec), ' ');
+	date = ft_strsplit(ctime(&s.st_mtimespec.tv_sec), ' ');
 	ft_putstr(date[1]);
 	ft_putstr(" ");
 	!date[2][1] ? ft_putchar(' ') : 0;
@@ -69,7 +69,7 @@ void	handle_date(struct stat s, char *ptr)
 	free(date);
 }
 
-void	group_rights(struct stat ptr, t_flags *flag)
+void	group_rights(struct stat ptr)
 {
 	struct group *grp;
 
@@ -80,12 +80,12 @@ void	group_rights(struct stat ptr, t_flags *flag)
 	ft_putchar(' ');
 }
 
-int usi_rights(char	*ptr, t_flags *flag)
+int usi_rights(char	*ptr)
 {
 	struct stat user;
 	struct passwd *parent;
 
-	lstat(ft_strjoin("./", ptr), &user);
+	lstat(ft_path(ptr),&user);
 	ft_space(ft_count_nbr(user.st_nlink), 4);
 	ft_putnbr(user.st_nlink);
 	ft_putchar(' ');
@@ -93,14 +93,14 @@ int usi_rights(char	*ptr, t_flags *flag)
 	ft_putstr(parent->pw_name);
 	ft_putchar(' ');
 	
-	group_rights(user,flag);
-	handle_date(user, ptr);
+	group_rights(user);
+	handle_date(user);
 	ft_putchar(' ');
 	return (0);
 
 }
 
-void ft_file_info(char **ptr, t_flags *flag)
+void ft_file_info(char **ptr)
 {
 	struct stat checker;
 	int			i;
@@ -108,7 +108,7 @@ void ft_file_info(char **ptr, t_flags *flag)
 	i = 0;
 	while (ptr[i] != NULL)
 	{
-		stat(ft_strjoin("./", ptr[i]), &checker);
+		stat(ft_path(ptr[i]), &checker);
 		if (S_ISBLK(checker.st_mode))
 			ft_putchar('b');
 		else if(S_ISCHR(checker.st_mode))
@@ -126,7 +126,7 @@ void ft_file_info(char **ptr, t_flags *flag)
 		else
 			ft_putchar('?');
 		ft_rights(checker);
-		usi_rights(ptr[i], flag);
+		usi_rights(ptr[i]);
 		ft_putendl(ptr[i]);
 		i++;
 	}

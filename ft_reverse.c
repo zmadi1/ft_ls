@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 10:45:33 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/20 11:01:29 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/21 09:30:26 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ char **ft_reverse(char **new)
 
 	i = 0;
 	j = ft_count_array(new) - 1;
-	str = (char **)malloc(sizeof(char *) * (j + 1));
+	str = (char **)malloc(sizeof(char *) * (j + 2));
 	while(j >= 0)
 	{
-		str[i++] = ft_strdup(new[j--]);
+		str[i] = ft_strdup(new[j]);
+		i++;
+		j--;
 	}
 	str[i] = NULL;
 	return (str);

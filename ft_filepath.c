@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*   ft_filepath.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/20 10:18:57 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/21 10:24:10 by zmadi            ###   ########.fr       */
+/*   Created: 2019/08/21 09:43:19 by zmadi             #+#    #+#             */
+/*   Updated: 2019/08/21 10:51:39 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_flags.h"
 
-void	ft_sort(char **new)
+char	*ft_path(char *str)
 {
-	int i;
-	int j;
-	char *str;
+	char *s;
 
-	i = 0;
-	while(new[i] != NULL)
-	{
-		j = i + 1;
-		while(new[j] != NULL)
-		{
-			if (ft_strcmp(new[i],new[j]) > 0)
-			{
-				str = ft_strdup(new[i]);
-				new[i] = ft_strdup(new[j]);
-				new[j] = ft_strdup(str);
-				free(str);
-			}
-			j++;
-		}
-		i++;
+	s = ft_strjoin("./",str);
 
-	}
-
+	return (s);
 }

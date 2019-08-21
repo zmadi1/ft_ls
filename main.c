@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 10:35:20 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/20 11:11:39 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/21 12:09:35 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ int		main(int ac, char **av)
 {
 	char	**new;
 	t_flags	*flag;
-	struct	dirent 	*files;
+	//struct	dirent 	*files;
 	int		i;
 	
+	new = NULL;
 	flag = ft_flag_ini();
 	if (ac > 1)
 		i = ls_flag_error_handling(av[1], flag);
