@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 09:36:06 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/21 12:48:48 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/21 12:52:22 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@ void	ft_swap(char **new, int a, int b)
 	tmp = ft_strdup(new[a]);
 	new[a] = ft_strdup(new[b]);
 	new[b] = ft_strdup(tmp);
-}
-
-void	print(char **new)
-{
-	int		a;
-
-	a = 0;
-	while (new[a] != NULL)
-	{
-		ft_putendl(new[a]);
-		a++;
-	}
 }
 
 char	**ft_time_sort(char **new)
@@ -62,6 +50,5 @@ char	**ft_time_sort(char **new)
 		}
 		i++;
 	}
-	//print(new);
 	return(new);
 }
