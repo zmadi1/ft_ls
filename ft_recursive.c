@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filepath.c                                      :+:      :+:    :+:   */
+/*   ft_recursive.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/21 09:43:19 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/23 14:42:46 by zmadi            ###   ########.fr       */
+/*   Created: 2019/08/27 08:19:30 by zmadi             #+#    #+#             */
+/*   Updated: 2019/08/27 08:20:03 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_flags.h"
 
-char	*ft_path(char *filename, char *dir)
-{
-	// int i;
-	// size_t len;
 
-	// i = 0;
-	// len = ft_strlen(filename)
-	char *ret;
-	ret = NULL;
-	ret = ft_strjoin(dir, "/");//memory leak
-	ret = ft_strjoin(ret, filename);
-	return (ret);
-}
+		if(files->d_type == 4 && flag->flag_R == '1' && flag->flag_a == '0' && files->d_name[0] != '.')
+		{
+
+			new = (char **)malloc(sizeof(char*) * count_dir(dir));
+			new[i++] = ft_strdup(files->d_name);
+			ft_putstr(new[0]);
+			ft_content(new,flag,dir);
+
+			ft_putstr(new[0]);
+        }

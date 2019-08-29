@@ -34,6 +34,7 @@ char **ft_reverse(char **new)
 	while(j >= 0)
 	{
 		str[i] = ft_strdup(new[j]);
+		free(new[j]);
 		i++;
 		j--;
 	}

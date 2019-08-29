@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filepath.c                                      :+:      :+:    :+:   */
+/*   ft_test.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/21 09:43:19 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/23 14:42:46 by zmadi            ###   ########.fr       */
+/*   Created: 2019/08/19 08:14:01 by zmadi             #+#    #+#             */
+/*   Updated: 2019/08/19 08:15:57 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_flags.h"
-
-char	*ft_path(char *filename, char *dir)
+#include <dirent.h>
+int main(int argc, char **argv)
 {
-	// int i;
-	// size_t len;
+	t_ls *ptr;
+	DIR *curdir;
+	struct dirent *files;
 
-	// i = 0;
-	// len = ft_strlen(filename)
-	char *ret;
-	ret = NULL;
-	ret = ft_strjoin(dir, "/");//memory leak
-	ret = ft_strjoin(ret, filename);
-	return (ret);
+	curdir = opendir(ptr->d_name);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 13:50:10 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/21 12:06:07 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/26 14:11:33 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,21 @@ typedef struct  s_flags
 	char  flag_g;
 
 }			t_flags;
+int array_counter(char **str);
+int			count(char *dir);
 void		ft_swap(char **new, int a, int b);
-char		**ft_time_sort(char **new);
-char		*ft_path(char *str);
+char		**ft_time_sort(char **new, char *dir);
+char		*ft_path(char *filename, char *dir);//
 int			ft_count_array(char **new);
 char		**ft_reverse(char **new);
 int			count();
 void		ft_sort(char **new);
-char		**ft_content(char **new, t_flags *flag);
+char		**ft_content(char **new, t_flags *flag, char *dir);
 void		ft_rights(struct stat mode);
 void		handle_date(struct stat s);
 void		group_rights(struct stat ptr);
-int			usi_rights(char *ptr);
-void		ft_file_info(char **ptr);
+int			usi_rights(char *ptr, char *dir);//
+void		ft_file_info(char **ptr, char *dir);
 int			check_flags(char *str, t_flags *flags);
 int			ls_flag_error_handling(char *str, t_flags *flag);
 int 		ft_opendir(char *str);

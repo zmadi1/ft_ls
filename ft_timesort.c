@@ -21,7 +21,7 @@ void	ft_swap(char **new, int a, int b)
 	new[b] = ft_strdup(tmp);
 }
 
-char	**ft_time_sort(char **new)
+char	**ft_time_sort(char **new, char *dir)
 {
 	struct stat a;
 	struct stat b;
@@ -34,8 +34,8 @@ char	**ft_time_sort(char **new)
 		j = i + 1;
 		while (new[j])
 		{
-			stat(ft_path(new[i]), &a);
-			stat(ft_path(new[j]), &b);
+			stat(ft_path(new[i], dir), &a);
+			stat(ft_path(new[j], dir), &b);
 			if(a.st_mtimespec.tv_sec < b.st_mtimespec.tv_sec)
 				ft_swap(new, i, j);
 			if(a.st_mtimespec.tv_sec == b.st_mtimespec.tv_sec)

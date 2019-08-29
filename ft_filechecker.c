@@ -6,7 +6,7 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 08:38:13 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/21 12:05:39 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/08/23 14:43:40 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my_flags.h"
@@ -73,19 +73,24 @@ void	group_rights(struct stat ptr)
 {
 	struct group *grp;
 
-	grp = getgrgid(ptr.st_gid);
-	ft_putstr(grp->gr_name);
+	if(!(grp = getgrgid(ptr.st_gid)))
+		ft_putnbr(ptr.st_gid);
+	else
+	{
+		ft_putstr(grp->gr_name);
+	}
+	
 	ft_space(ft_count_nbr(ptr.st_size), 6);
 	ft_putnbr(ptr.st_size);
 	ft_putchar(' ');
 }
 
-int usi_rights(char	*ptr)
+int usi_rights(char	*ptr, char *dir)
 {
 	struct stat user;
 	struct passwd *parent;
 
-	lstat(ft_path(ptr),&user);
+	lstat(ft_path(ptr, dir),&user);
 	ft_space(ft_count_nbr(user.st_nlink), 4);
 	ft_putnbr(user.st_nlink);
 	ft_putchar(' ');
@@ -100,7 +105,7 @@ int usi_rights(char	*ptr)
 
 }
 
-void ft_file_info(char **ptr)
+void ft_file_info(char **ptr, char *dir)
 {
 	struct stat checker;
 	int			i;
@@ -108,7 +113,7 @@ void ft_file_info(char **ptr)
 	i = 0;
 	while (ptr[i] != NULL)
 	{
-		stat(ft_path(ptr[i]), &checker);
+		lstat(ft_path(ptr[i], dir), &checker);
 		if (S_ISBLK(checker.st_mode))
 			ft_putchar('b');
 		else if(S_ISCHR(checker.st_mode))
@@ -126,7 +131,7 @@ void ft_file_info(char **ptr)
 		else
 			ft_putchar('?');
 		ft_rights(checker);
-		usi_rights(ptr[i]);
+		usi_rights(ptr[i],dir);
 		ft_putendl(ptr[i]);
 		i++;
 	}
