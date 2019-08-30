@@ -27,36 +27,43 @@ int		check_flags(char **str,t_flags *flags)
 			if (ft_strchr(str[i],'a'))
 			{
 				flags->flag_a = '1';
+				flags->flag_active = '1';
 				printf("a_flag");
 			}
 			if (ft_strchr(str[i],'r'))
 			{
 				flags->flag_r = '1';
+				flags->flag_active = '1';
 				printf("r_flag");
 			}
 			if (ft_strchr(str[i],'t'))
 			{
 				flags->flag_t = '1';
+				flags->flag_active = '1';
 				printf("t_flag");
 			}
 			if (ft_strchr(str[i],'o'))
 			{
 				flags->flag_o = '1';
+				flags->flag_active = '1';
 				printf("o_flag");
 			}
 			if (ft_strchr(str[i],'R'))
 			{
 				flags->flag_R = '1';
+				flags->flag_active = '1';
 				printf("R_flag");
 			}
 			if (ft_strchr(str[i],'n'))
 			{
 				flags->flag_n = '1';
+				flags->flag_active = '1';
 				printf("n_flag");
 			}
 			if (ft_strchr(str[i],'g'))
 			{
 				flags->flag_g = '1';
+				flags->flag_active = '1';
 				printf("g_flag");
 			}
 			if (flags->flag_active == '0')
