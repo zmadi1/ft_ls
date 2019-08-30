@@ -7,4 +7,4 @@ SRCS = array_counter.c ft_count.c ft_filepath.c ft_opendir.c ls_flags.c ft_rever
 all: $(NAME)
 
 $(NAME):
-	@gcc -g -Wall -Wextra -Werror $(SRCS) $(LIB) 
+	@gcc -Wall -Wextra -Werror $(SRCS) $(LIB) 

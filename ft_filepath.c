@@ -20,8 +20,10 @@ char	*ft_path(char *filename, char *dir)
 	// i = 0;
 	// len = ft_strlen(filename)
 	char *ret;
+	char *ptr = NULL;
 	ret = NULL;
-	ret = ft_strjoin(dir, "/");//memory leak
-	ret = ft_strjoin(ret, filename);
+	ptr = ft_strjoin(dir, "/");
+	ret = ft_strjoin(ptr, filename);
+	free(ptr);
 	return (ret);
 }

@@ -31,29 +31,57 @@ int count_dir(char *dir)
 	return (i);
 }
 
-char **ft_content(char **new, t_flags *flag, char *dir)
+char **temporary_function(char **dir, char **temp)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while(dir[i] != NULL)
+	{
+		i++;
+	}
+	while(temp[j] != NULL)
+	{
+		dir[i++] = ft_strdup(temp[j++]);
+	}
+	dir[i] = NULL;
+	return (dir);
+}
+
+char **ft_content(char **new, t_flags *flag, char **dir, int k)
 {
 	int i = 0;
 	DIR *curdir;
-	char **recur_new;
 	struct dirent *files;
 	int j = 0;
+	char **temp;
 
-	recur_new = NULL;
-	new = (char **)malloc(sizeof(char *) * count(dir) + 1);
-	recur_new = (char **)malloc(sizeof(char*) * count_dir(dir));
-	curdir = opendir(dir);
+	temp = (char **)malloc(sizeof(char *) * 400000);
+	new = (char **)malloc(sizeof(char *) * count(dir[k]) + 1);
+	curdir = opendir(dir[k]);
 	while ((files = readdir(curdir)) != NULL)
 	{
 		if (flag->flag_a == '0' && files->d_name[0] != '.')
-			new[i++] = ft_strdup(files->d_name);
-		if(flag->flag_a == '1')
-				new[i++] = ft_strdup(files->d_name);
-		if (files->d_type == 4)
 		{
-			recur_new[j++] = ft_path(files->d_name, dir);
-			// ft_putendl(recur_new[j-1]);
+			new[i++] = ft_strdup(files->d_name);
+			if (flag->flag_R == '1' && files->d_type == 4 && (ft_strcmp(files->d_name, ".") != 0) && (ft_strcmp(files->d_name, "..") != 0))
+			{
+				temp[j++] = ft_path(files->d_name,dir[k]);
+				temp[j] = NULL;
+			}
 		}
+		if(flag->flag_a == '1')
+		{
+			new[i++] = ft_strdup(files->d_name);
+			if (flag->flag_R == '1' && files->d_type == 4 && (ft_strcmp(files->d_name, ".") != 0) && (ft_strcmp(files->d_name, "..") != 0))
+			{
+				temp[j++] = ft_path(files->d_name,dir[k]);
+				temp[j] = NULL;
+			}
+		}
+
 		// if(files->d_type == 4)
 		// {
 		// 	curdir = opendir(files->d_name);
@@ -68,17 +96,17 @@ char **ft_content(char **new, t_flags *flag, char *dir)
 		// }
 	}
 
-	char **temp;
+	
 
 	closedir(curdir);
 	new[i] = NULL;
 	ft_sort(new);
 	if (flag->flag_t == '1')
-		new = ft_time_sort(new, dir);
+		new = ft_time_sort(new, dir[k]);
 	if (flag->flag_r == '1')
 		new = ft_reverse(new);
-	if (flag->flag_l == '1')
-		ft_file_info(new, dir);
+	// if (flag->flag_l == '1')
+	// 	ft_file_info(new, dir[k]);
 	// if (recur_new != NULL)
 	// {
 	// 	ft_sort(recur_new);
@@ -90,6 +118,7 @@ char **ft_content(char **new, t_flags *flag, char *dir)
 	// 		i++;
 	// 	}
 	// }
-	temp = new;
-	return (temp);
+	dir = temporary_function(dir,temp);
+	ft_putchar('\n');
+	return (new);
 }

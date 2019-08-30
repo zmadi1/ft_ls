@@ -12,55 +12,67 @@
 
 #include "my_flags.h"
 
-int		check_flags(char *str,t_flags *flags)
+int		check_flags(char **str,t_flags *flags)
 {
-	if (str[0] == '-')
+	int i = 0;
+	while (str[i] != NULL)
 	{
-			if (ft_strchr(str,'l'))
+		if (str[i][0] == '-')
+		{
+			if (ft_strchr(str[i],'l'))
 			{
 				flags->flag_l = '1';
-				printf ("l_flag");
+				flags->flag_active = '1';
 			}
-			if (ft_strchr(str,'a'))
+			if (ft_strchr(str[i],'a'))
 			{
 				flags->flag_a = '1';
 				printf("a_flag");
 			}
-			if (ft_strchr(str,'r'))
+			if (ft_strchr(str[i],'r'))
 			{
 				flags->flag_r = '1';
 				printf("r_flag");
 			}
-			if (ft_strchr(str,'t'))
+			if (ft_strchr(str[i],'t'))
 			{
 				flags->flag_t = '1';
 				printf("t_flag");
 			}
-			if (ft_strchr(str,'o'))
+			if (ft_strchr(str[i],'o'))
 			{
 				flags->flag_o = '1';
 				printf("o_flag");
 			}
-			if (ft_strchr(str,'R'))
+			if (ft_strchr(str[i],'R'))
 			{
 				flags->flag_R = '1';
 				printf("R_flag");
 			}
-			if (ft_strchr(str,'n'))
+			if (ft_strchr(str[i],'n'))
 			{
 				flags->flag_n = '1';
 				printf("n_flag");
 			}
-			if (ft_strchr(str,'g'))
+			if (ft_strchr(str[i],'g'))
 			{
 				flags->flag_g = '1';
 				printf("g_flag");
 			}
-			printf("\n");
+			if (flags->flag_active == '0')
+			{
+				flags->flag_err = '1';
+				ft_putstr("ls: invalid option --");
+				ft_putstr(str[i]);
+				ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
+				return (0);
+			}
+		}
+		i++;
 	}
 	return 1;
 }
-
+/*
 int		ls_flag_error_handling(char *str, t_flags *flag)
 {
 	char *temp;
@@ -97,5 +109,6 @@ int		ls_flag_error_handling(char *str, t_flags *flag)
 	}
 	return (1);
 }
+*/
 
 
