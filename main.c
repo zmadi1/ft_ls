@@ -55,6 +55,7 @@ char **arguments_taker(char **str, int argument_counter)
 
 int main(int ac, char **av)
 {
+	char *s;
 	char **new;
 	char **str;
 	// DIR *pdir;
@@ -64,6 +65,7 @@ int main(int ac, char **av)
 	int j = 0;
 
 	new = NULL;
+	
 	flag = ft_flag_ini();
 	str = arguments_taker(av,ac);
 	ft_sort(str);
@@ -74,7 +76,9 @@ int main(int ac, char **av)
 		}
 	if (ac > 1)
 	{
-		i = check_flags(av, flag);
+		s = ft_strdup(flag_saver(av));
+		if(ls_flag_error_handling(s) == 1)
+			check_flags(av, flag);
 		while (str[j] && flag->flag_err == '0')
 		{
 			// ft_putnbr(j);

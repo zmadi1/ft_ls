@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "my_flags.h"
+
 char *flag_saver(char **str)
 {
 	char *s;
@@ -22,8 +24,11 @@ char *flag_saver(char **str)
 		if (str[i][0] == '-')
 		{
 			s = ft_strjoin(s, str[i]);
+			ft_putendl(s);
 		}
+	
 		i++;
 	}
+	
 	return (s);
 }

@@ -68,54 +68,46 @@ int		check_flags(char **str,t_flags *flags)
 			}
 			if (flags->flag_active == '0')
 			{
-				flags->flag_err = '1';
-				ft_putstr("ls: invalid option --");
-				ft_putstr(str[i]);
-				ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
+				// flags->flag_err = '1';
+				// ft_putstr("ls: invalid option --");
+				// ft_putstr(str[i]);
+				// ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
 				return (0);
 			}
+			
 		}
 		i++;
 	}
 	return 1;
 }
-/*
-int		ls_flag_error_handling(char *str, t_flags *flag)
+
+int		ls_flag_error_handling(char *str)
 {
 	char *temp;
 	
 	temp = str;
-
+	temp++;
 	if (temp[0] != '-' || (temp[0] == '-' && !temp[1]))
-		return 0;
-	if (temp[0] == '-' && temp[1] == '-' && !temp[2])
-		return 1;
-	if (temp[0] == '-')
+		return (1);
+	while (*temp == 'l' || *temp == 'r' || *temp == 'R' ||
+	*temp == 'o' || *temp == 'n' || *temp == 'g' ||
+	*temp == 'a' || *temp == 't')
 	{
-		temp++;
-		while (*temp == 'l' || *temp == 'r' || *temp == 'R' ||
-		
-				*temp == 'o' || *temp == 'n' || *temp == 'g' ||
-				*temp == 'a' || *temp == 't')
-		{
-			
 			temp++;
 			
-		}
-		if (*temp)
-		{
-			ft_putstr("ls: invalid option --");
-			ft_putchar(*temp);
-			ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
-			exit(0);
-		}
-		else
-		{
-			check_flags(str,flag);
-		}
+	}
+	if (*temp)
+	{
+		ft_putstr("ls: invalid option --  ");
+		ft_putchar(*temp);
+		ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
+		exit(0);
+	}
+	else
+	{
+		ft_putendl("There is no such file or directory");
+		exit(0);
 	}
 	return (1);
-}
-*/
 
-
+}	

@@ -41,9 +41,9 @@ typedef struct  s_flags
 	char  flag_g;
 	char  flag_err;
 	char  flag_active;
-
 }			t_flags;
-int array_counter(char **str);
+char		*flag_saver(char **str);
+int 		array_counter(char **str);
 int			count(char *dir);
 void		ft_swap(char **new, int a, int b);
 char		**ft_time_sort(char **new, char *dir);
@@ -59,7 +59,7 @@ void		group_rights(struct stat ptr);
 int			usi_rights(char *ptr, char *dir);//
 void		ft_file_info(char **ptr, char *dir);
 int			check_flags(char **str, t_flags *flags);
-int			ls_flag_error_handling(char *str, t_flags *flag);
+int			ls_flag_error_handling(char *str);
 int 		ft_opendir(char *str);
 void		ft_space(int i, int b);
 int		ft_count_nbr(int i);
