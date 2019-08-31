@@ -58,7 +58,7 @@ char **ft_content(char **new, t_flags *flag, char **dir, int k)
 	int j = 0;
 	char **temp;
 
-	temp = (char **)malloc(sizeof(char *) * 400000);
+	temp = (char **)malloc(sizeof(char *) * 256);
 	new = (char **)malloc(sizeof(char *) * count(dir[k]) + 1);
 	curdir = opendir(dir[k]);
 	while ((files = readdir(curdir)) != NULL)

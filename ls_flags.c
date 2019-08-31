@@ -86,9 +86,10 @@ int		ls_flag_error_handling(char *str)
 	char *temp;
 	
 	temp = str;
-	temp++;
+	//temp++;
 	if (temp[0] != '-' || (temp[0] == '-' && !temp[1]))
-		return (1);
+		ft_putendl("No such file or directory");
+	temp++;
 	while (*temp == 'l' || *temp == 'r' || *temp == 'R' ||
 	*temp == 'o' || *temp == 'n' || *temp == 'g' ||
 	*temp == 'a' || *temp == 't')
@@ -103,11 +104,5 @@ int		ls_flag_error_handling(char *str)
 		ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
 		exit(0);
 	}
-	else
-	{
-		ft_putendl("There is no such file or directory");
-		exit(0);
-	}
 	return (1);
-
 }	

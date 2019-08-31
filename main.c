@@ -39,7 +39,7 @@ char **arguments_taker(char **str, int argument_counter)
 
 	i = 1;
 	j = 0; 
-	s = (char**)malloc(sizeof(char*)*argument_counter * 256);
+	s = (char**)malloc(sizeof(char*)*argument_counter * 1000000);
 	while(str[i] != NULL)
 	{
 		if (str[i][0] != '-')

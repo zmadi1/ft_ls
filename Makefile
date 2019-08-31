@@ -7,7 +7,7 @@ OBJ = ft_argument_counterfunc.o array_counter.o ft_count.o ft_filepath.o ft_open
 all: $(NAME)
 
 $(NAME):
-	@gcc -g -Wall -Wextra -Werror $(SRCS) $(LIB) -o $(NAME)
+	@gcc -Wall -Wextra -Werror $(SRCS) $(LIB) -o $(NAME)
 
 clean:
 	/bin/rm -f $(OBJ)
