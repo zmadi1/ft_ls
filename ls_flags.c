@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_flags.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 11:50:14 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/23 14:01:16 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/12 12:28:56 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		check_flags(char **str,t_flags *flags)
 {
+	
 	int i = 0;
 	while (str[i] != NULL)
 	{
@@ -81,28 +82,29 @@ int		check_flags(char **str,t_flags *flags)
 	return 1;
 }
 
-int		ls_flag_error_handling(char *str)
-{
-	char *temp;
+// int		ls_flag_error_handling(char *str)
+// {
+// 	char *temp;
 	
-	temp = str;
-	//temp++;
-	if (temp[0] != '-' || (temp[0] == '-' && !temp[1]))
-		ft_putendl("No such file or directory");
-	temp++;
-	while (*temp == 'l' || *temp == 'r' || *temp == 'R' ||
-	*temp == 'o' || *temp == 'n' || *temp == 'g' ||
-	*temp == 'a' || *temp == 't')
-	{
-			temp++;
+// 	temp = str;
+// 	//temp++;
+// 	if (temp[0] != '-' || (temp[0] == '-' && !temp[1]))
+// 		ft_putendl("No such file or directory");
+// 	temp++;
+// 	while (*temp == 'l' || *temp == 'r' || *temp == 'R' ||
+// 	*temp == 'o' || *temp == 'n' || *temp == 'g' ||
+// 	*temp == 'a' || *temp == 't')
+// 	{
+// 			temp++;
 			
-	}
-	if (*temp)
-	{
-		ft_putstr("ls: invalid option --  ");
-		ft_putchar(*temp);
-		ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
-		exit(0);
-	}
-	return (1);
-}	
+// 	}
+// 	if (*temp)
+// 	{
+// 		ft_putstr("ls: invalid option --  ");
+// 		ft_putchar(*temp);
+// 		ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
+// 		exit(0);
+// 	}
+// 	return (1);
+// 
+	

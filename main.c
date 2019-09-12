@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 10:35:20 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/29 14:32:17 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/12 14:50:32 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,23 @@ char **arguments_taker(char **str, int argument_counter)
 	s = (char**)malloc(sizeof(char*)*argument_counter * 1000000);
 	while(str[i] != NULL)
 	{
-		if (str[i][0] != '-')
-		{
-			s[j] = ft_strdup(str[i]);
+		
+		 if (str[i][0] != '-')
+		 {
+			s[j] = ft_strdup(&str[i][j]);
 			j++;
-		}
+		
+		 }
 		i++;
 	}
-	s[j] = NULL;
 	return (s);
 }
 
 int main(int ac, char **av)
 {
-	char *s;
 	char **new;
 	char **str;
-	// DIR *pdir;
 	t_flags *flag;
-	// struct dirent *files;
 	int i;
 	int j = 0;
 
@@ -76,21 +74,18 @@ int main(int ac, char **av)
 		}
 	if (ac > 1)
 	{
-		s = ft_strdup(flag_saver(av));
-		if(ls_flag_error_handling(s) == 1)
-			check_flags(av, flag);
+		// ft_putendl(av[1]);
+
+		flag_saver(av,flag);
+		// exit(0);
 		while (str[j] && flag->flag_err == '0')
 		{
-			// ft_putnbr(j);
-			
 			if(array_counter(str) > 1)
 			{
 				ft_putstr(str[j]);
 				ft_putendl(":");
 			}
 			new = ft_content(new, flag, str, j);
-			// ft_putnbr(j);
-
 			i = 0;
 			if (flag->flag_l == '1')
 				ft_file_info(new, str[j]);
@@ -102,7 +97,6 @@ int main(int ac, char **av)
 			j++;
 		}
 	}
-	//new = ft_content(new, flag, ".");
 	i = 0;
 	if (ac == 1)
 	{
@@ -110,14 +104,5 @@ int main(int ac, char **av)
 		while (new[i] != NULL)
 			ft_putendl(new[i++]);
 	}
-	// if (files->d_type == 4)
-	// {
-	// 	dir = opendir(dir);
-	// }
-	// i = 0;
-	// while(str[i] != NULL)
-	// {
-	// 	ft_putendl(str[i++]);
-	// }
 	return (0);
 }

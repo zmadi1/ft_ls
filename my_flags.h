@@ -42,7 +42,7 @@ typedef struct  s_flags
 	char  flag_err;
 	char  flag_active;
 }			t_flags;
-char		*flag_saver(char **str);
+void		flag_saver(char **str, t_flags *flags);
 int 		array_counter(char **str);
 int			count(char *dir);
 void		ft_swap(char **new, int a, int b);

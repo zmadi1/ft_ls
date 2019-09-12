@@ -3,36 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filechecker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 08:38:13 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/23 14:43:40 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/12 14:56:48 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "my_flags.h"
 
-/*void	ft_space(int i, int b)
-{
-	int		a;
-
-	a = 0;
-	while (a < (b - i))
-	{
-		ft_putchar(' ');
-		a++;
-	}
-}
-
-int		ft_count_nbr(int i)
-{
-	int		a;
-
-	a = 0;
-	while (i /= 10)
-		a++;
-	return (a);
-}
-*/
 void	ft_rights(struct stat mode)
 {
 	char *i;
@@ -114,6 +93,8 @@ void ft_file_info(char **ptr, char *dir)
 	while (ptr[i] != NULL)
 	{
 		lstat(ft_path(ptr[i], dir), &checker);
+		// ft_putstr("========>");
+		// ft_putendl(ft_path(ptr[i], dir));
 		if (S_ISBLK(checker.st_mode))
 			ft_putchar('b');
 		else if(S_ISCHR(checker.st_mode))
