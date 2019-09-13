@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 10:35:20 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/12 14:50:32 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/13 15:50:02 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,9 @@ int main(int ac, char **av)
 			str[j] = ft_strdup(".");
 			str[j+1] = NULL;
 		}
-	if (ac > 1)
+	if (ac >= 2)
 	{
-		// ft_putendl(av[1]);
-
 		flag_saver(av,flag);
-		// exit(0);
 		while (str[j] && flag->flag_err == '0')
 		{
 			if(array_counter(str) > 1)
@@ -85,7 +82,7 @@ int main(int ac, char **av)
 				ft_putstr(str[j]);
 				ft_putendl(":");
 			}
-			new = ft_content(new, flag, str, j);
+			new = ft_content(new, flag, &str[j], j);
 			i = 0;
 			if (flag->flag_l == '1')
 				ft_file_info(new, str[j]);
@@ -98,9 +95,9 @@ int main(int ac, char **av)
 		}
 	}
 	i = 0;
-	if (ac == 1)
+	if (ac == 1 )
 	{
-		new = ft_content(new, flag, str,j);
+		new = ft_content(new, flag, str, j);
 		while (new[i] != NULL)
 			ft_putendl(new[i++]);
 	}

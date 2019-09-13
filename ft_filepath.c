@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filepath.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 09:43:19 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/23 14:42:46 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/13 12:47:05 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,13 @@ char	*ft_path(char *filename, char *dir)
 	char *ptr = NULL;
 	ret = NULL;
 	ptr = ft_strjoin(dir, "/");
+	
 	ret = ft_strjoin(ptr, filename);
 	free(ptr);
+	// ft_putendl("in path function");
+	//  ft_putendl(ret);
+	//  	 ft_putendl("ola");
+	// 	  	 ft_putendl(filename);
+	//  exit(0);
 	return (ret);
 }

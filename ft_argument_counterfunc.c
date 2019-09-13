@@ -6,18 +6,12 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 16:04:29 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/12 15:45:48 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/13 15:58:11 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_flags.h"
 
-//char *flag_saver(char **str)
-// {
-// 	char *s;
-// 	int i;
-
-// 	i = 0
 int is_regular_file(const char *path)
 {
     struct stat path_stat;
@@ -35,7 +29,6 @@ int isDirectory(const char *path)
 
 void flag_saver(char **str,t_flags *flags)
 {
-    DIR *dir = NULL;
     int i;
     int j;
 	char **new;
@@ -43,18 +36,19 @@ void flag_saver(char **str,t_flags *flags)
     i = 1;
     j = 0;
 	new = NULL;
-	//new = ft_content(new,flags,str,j);
     while (str[i] != NULL)
     {
         //checking if str[i] is a file / directory
         if (str[i][j] != '-')
         {
+            //i//++;
             //its a file
 			ft_sort(str);
-            if (is_regular_file(str[i]))
+            if (is_regular_file(str[i+1]))
             {
-				//new = ft_content(new,flags,str,j);
-                dir = opendir(str[i]);
+				// new = ft_content(new,flags,&str[i],i);
+                // while (new[i] != NULL)
+			    //     ft_putendl(new[i++]);
                 ft_putstr("its a file  ");
 				ft_putendl(str[i]);
 				exit(0);
@@ -63,11 +57,15 @@ void flag_saver(char **str,t_flags *flags)
             else if (isDirectory(str[i]))
             {
                 ft_putendl("hee");
-                ft_putendl(str[i]);
+                //ft_putendl(str[i]);
                  new = ft_content(new,flags,&str[i],i);
-                //  if(flags->flag_l == '1')
-                //     ft_file_info(new, str[i]);
-				ft_putendl("++++>count");
+                 if(flags->flag_l == '1')
+                    ft_file_info(new, str[i]);
+                 if(flags->flag_l == '0')
+                 {
+			    	while (new[i] != NULL)
+                        ft_putendl(new[i++]);
+                 }
 				exit(0);
             }
             //its junk ==== We don't want this =======
