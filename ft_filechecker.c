@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 08:38:13 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/16 15:19:13 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/16 15:32:44 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,9 @@ int usi_rights(char	*ptr, char *dir)
 	struct passwd *parent;
 
 	if((ft_strcmp(ptr, dir)) == 0)
-		stat(ft_path(ptr, "."),&user);
+		lstat(ft_path(ptr, "."),&user);
 	else
-		stat(ft_path(ptr, dir),&user);
-	ft_putendl(ft_path(ptr,dir));
+		lstat(ft_path(ptr, dir),&user);
 	ft_space(ft_count_nbr(user.st_nlink), 4);
 	ft_putnbr(user.st_nlink);
 	ft_putchar(' ');
@@ -96,8 +95,7 @@ void ft_file_info(char **ptr, char *dir)
 	i = 0;
 	while (ptr[i] != NULL)
 	{
-		ft_putendl("we are here");
-		stat(ft_path(ptr[i], dir), &checker);
+		lstat(ft_path(ptr[i], dir), &checker);
 		// ft_putstr("========>");
 		// ft_putendl(ft_path(ptr[i], dir));
 		if (S_ISBLK(checker.st_mode))
@@ -121,5 +119,4 @@ void ft_file_info(char **ptr, char *dir)
 		ft_putendl(ptr[i]);
 		i++;
 	}
-
 }
