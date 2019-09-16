@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 10:35:20 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/13 15:50:02 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/16 15:12:13 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_flags *ft_flag_ini(void)
 
 	flag->flag_l = '0';
 	flag->flag_a = '0';
-	flag->flag_R = '0';
-	flag->flag_r = '0';
+	flag->flag_ur = '0';
+	flag->flag_lr = '0';
 	flag->flag_t = '0';
 	flag->flag_o = '0';
 	flag->flag_n = '0';
@@ -39,18 +39,17 @@ char **arguments_taker(char **str, int argument_counter)
 
 	i = 1;
 	j = 0; 
-	s = (char**)malloc(sizeof(char*)*argument_counter * 1000000);
+	s = (char**)malloc(sizeof(char*)*argument_counter * 1000);
 	while(str[i] != NULL)
 	{
-		
 		 if (str[i][0] != '-')
 		 {
 			s[j] = ft_strdup(&str[i][j]);
 			j++;
-		
 		 }
 		i++;
 	}
+	s[j] = NULL;
 	return (s);
 }
 
@@ -63,18 +62,19 @@ int main(int ac, char **av)
 	int j = 0;
 
 	new = NULL;
-	
+	str = NULL;
 	flag = ft_flag_ini();
 	str = arguments_taker(av,ac);
 	ft_sort(str);
-	if (str[j] == NULL)
-		{
-			str[j] = ft_strdup(".");
-			str[j+1] = NULL;
-		}
+	if (str[0] == NULL)
+	{
+		str[j] = ft_changer(av);
+		str[j+1] = NULL;
+	}
 	if (ac >= 2)
 	{
-		flag_saver(av,flag);
+		//flag_saver(av,flag);
+		check_flags(av,flag);
 		while (str[j] && flag->flag_err == '0')
 		{
 			if(array_counter(str) > 1)
@@ -82,7 +82,8 @@ int main(int ac, char **av)
 				ft_putstr(str[j]);
 				ft_putendl(":");
 			}
-			new = ft_content(new, flag, &str[j], j);
+			ft_putendl("its us");
+			new = ft_content(new, flag, &str[j]);
 			i = 0;
 			if (flag->flag_l == '1')
 				ft_file_info(new, str[j]);
@@ -97,7 +98,7 @@ int main(int ac, char **av)
 	i = 0;
 	if (ac == 1 )
 	{
-		new = ft_content(new, flag, str, j);
+		new = ft_content(new, flag, str);
 		while (new[i] != NULL)
 			ft_putendl(new[i++]);
 	}

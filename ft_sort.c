@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 10:18:57 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/21 10:24:10 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/16 12:02:34 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	ft_sort(char **new)
 {
-	int i;
-	int j;
-	char *str;
+	int		i;
+	int		j;
+	char	*str;
 
 	i = 0;
-	while(new[i] != NULL)
+	while (new[i] != NULL)
 	{
 		j = i + 1;
-		while(new[j] != NULL)
+		while (new[j] != NULL)
 		{
-			if (ft_strcmp(new[i],new[j]) > 0)
+			if (ft_strcmp(new[i], new[j]) > 0)
 			{
 				str = ft_strdup(new[i]);
 				new[i] = ft_strdup(new[j]);
@@ -34,7 +34,5 @@ void	ft_sort(char **new)
 			j++;
 		}
 		i++;
-
 	}
-
 }

@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 14:07:57 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/13 13:15:23 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/16 15:12:52 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ char **temporary_function(char **dir, char **temp)
 		dir[i++] = ft_strdup(temp[j++]);
 	}
 	dir[i] = NULL;
-	ft_putendl("===>here");
+	ft_sort(dir);
 	return (dir);
 }
 
-char **ft_content(char **new, t_flags *flag, char **dir, int k)
+char **ft_content(char **new, t_flags *flag, char **dir)
 {
 	int i = 0;
 	DIR *curdir;
@@ -62,9 +62,12 @@ char **ft_content(char **new, t_flags *flag, char **dir, int k)
 	temp = (char **)malloc(sizeof(char *) * 256);
 	//ft_putendl("1");
 	new = (char **)malloc(sizeof(char *) * count(dir[j]) + 1);
+	ft_putendl("wolrd");
 	//ft_putendl("2");
 	curdir = opendir(*dir);
-	while ((files = readdir(curdir)) != NULL)
+	if(!curdir)
+		ft_protector(new, *dir);
+	while (curdir && (files = readdir(curdir)) != NULL)
 	{
 		//ft_putendl("9");
 		// ft_putendl("Here");
@@ -72,10 +75,11 @@ char **ft_content(char **new, t_flags *flag, char **dir, int k)
 		{
 			
 			new[i++] = ft_strdup(files->d_name);
-			if (flag->flag_R == '1' && files->d_type == 4 && (ft_strcmp(files->d_name, ".") != 0) && (ft_strcmp(files->d_name, "..") != 0))
+			if (flag->flag_ur == '1' && files->d_type == 4 && (ft_strcmp(files->d_name, ".") != 0) && (ft_strcmp(files->d_name, "..") != 0))
 			{
 			
 				temp[j++] = ft_path(files->d_name,*dir);
+				temp[j] = NULL;
 			
 
 				//ft_putendl(ft_path(files->d_name,*dir));
@@ -87,68 +91,27 @@ char **ft_content(char **new, t_flags *flag, char **dir, int k)
 		if(flag->flag_a == '1')
 		{
 			new[i++] = ft_strdup(files->d_name);
-			if (flag->flag_R == '1' && files->d_type == 4 && (ft_strcmp(files->d_name, ".") != 0) && (ft_strcmp(files->d_name, "..") != 0))
+			if (flag->flag_ur == '1' && files->d_type == 4 && (ft_strcmp(files->d_name, ".") != 0) && (ft_strcmp(files->d_name, "..") != 0))
 			{
 				//exit(0);
-				temp[j++] = ft_path(files->d_name,dir[k++]);
+				temp[j++] = ft_path(files->d_name,*dir);
 				temp[j] = NULL;//store path name 
 			}
 		}
-
-		// if(files->d_type == 4)
-		// {
-		// 	curdir = opendir(files->d_name);
-		// 	while ((files = readdir(curdir)) != NULL)
-		// 	{
-		// 		recur_new[i] = ft_path(files->d_name,dir);
-		// 		ft_putendl(recur_new[i]);
-		// 		i++;
-		// 	}
-		// 	ft_putchar('\n');
-		// 	// ft_content(new,flag,dir);
-		// }
-			
 	}
 		temp[j] = NULL;
 	// exit(0);
-	closedir(curdir);
-	new[i] = NULL;
-
+	if (curdir)
+	{
+		closedir(curdir);
+		new[i] = NULL;
+	}
 	ft_sort(new);
 	if (flag->flag_t == '1')
 		new = ft_time_sort(new, *dir);
-	if (flag->flag_r == '1')
-		new = ft_reverse(new);
-	// if (flag->flag_l == '1')
-	// 	ft_file_info(new, dir[k]);
-	// if (recur_new != NULL)
-	// {
-	// 	ft_sort(recur_new);
-	// 	ft_time_sort(recur_new,dir);
-	// 	ft_file_info(recur_new,dir);
-	// 	while(recur_new[i])
-	// 	{
-	// 		ft_content(new,flag,recur_new[i]);
-	// 		i++;
-	// 	}
-	// }
-	ft_putendl(*dir);
-		ft_putendl("hi");	
+	if (flag->flag_lr == '1')
+		new = ft_reverse(new);	
 	dir = temporary_function(dir,temp);
-	// int l =0;
-	// ft_putendl(*dir);
-	// while(temp[l] !=NULL)
-	// {
-	// 	ft_putnbr(l);
-		
-	// 	ft_putendl(temp[l]);
-	// 	readdir(temp[l]);
-		
-	// 	l++;
-		
-	// }
-	// exit(0);
-	// ft_putendl(temp[0]);
 	ft_putchar('\n');
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 11:50:14 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/13 13:52:49 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/16 14:48:17 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,43 +29,21 @@ int		check_flags(char **str,t_flags *flags)
 			{
 				flags->flag_a = '1';
 				flags->flag_active = '1';
-				printf("a_flag");
 			}
 			if (ft_strchr(str[i],'r'))
 			{
-				flags->flag_r = '1';
+				flags->flag_lr = '1';
 				flags->flag_active = '1';
-				printf("r_flag");
 			}
 			if (ft_strchr(str[i],'t'))
 			{
 				flags->flag_t = '1';
 				flags->flag_active = '1';
-				printf("t_flag");
-			}
-			if (ft_strchr(str[i],'o'))
-			{
-				flags->flag_o = '1';
-				flags->flag_active = '1';
-				printf("o_flag");
 			}
 			if (ft_strchr(str[i],'R'))
 			{
-				flags->flag_R = '1';
+				flags->flag_ur = '1';
 				flags->flag_active = '1';
-				printf("R_flag");
-			}
-			if (ft_strchr(str[i],'n'))
-			{
-				flags->flag_n = '1';
-				flags->flag_active = '1';
-				printf("n_flag");
-			}
-			if (ft_strchr(str[i],'g'))
-			{
-				flags->flag_g = '1';
-				flags->flag_active = '1';
-				printf("g_flag");
 			}
 			if (flags->flag_active == '0')
 			{

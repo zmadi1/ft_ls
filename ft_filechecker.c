@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 08:38:13 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/12 14:56:48 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/16 15:17:53 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ int usi_rights(char	*ptr, char *dir)
 	struct stat user;
 	struct passwd *parent;
 
-	lstat(ft_path(ptr, dir),&user);
+	if((ft_strcmp(ptr, dir)) == 0)§
+		stat(ft_path(ptr, "."),&user);
+	else
+		stat(ft_path(ptr, dir),&user);
+	ft_putendl(ft_path(ptr,dir));
 	ft_space(ft_count_nbr(user.st_nlink), 4);
 	ft_putnbr(user.st_nlink);
 	ft_putchar(' ');
@@ -92,7 +96,8 @@ void ft_file_info(char **ptr, char *dir)
 	i = 0;
 	while (ptr[i] != NULL)
 	{
-		lstat(ft_path(ptr[i], dir), &checker);
+		ft_putendl("we are here");
+		stat(ft_path(ptr[i], dir), &checker);
 		// ft_putstr("========>");
 		// ft_putendl(ft_path(ptr[i], dir));
 		if (S_ISBLK(checker.st_mode))
