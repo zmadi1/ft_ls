@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 09:36:06 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/11 12:29:56 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/17 17:36:59 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_swap(char **new, int a, int b)
 	tmp = ft_strdup(new[a]);
 	new[a] = ft_strdup(new[b]);
 	new[b] = ft_strdup(tmp);
+	ft_strdel(&tmp);
 }
 
 char	**ft_time_sort(char **new, char *dir)

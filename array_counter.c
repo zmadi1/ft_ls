@@ -6,20 +6,18 @@
 /*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 05:25:44 by zmadi             #+#    #+#             */
-/*   Updated: 2019/08/31 05:25:47 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/17 11:21:18 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_flags.h"
 
-int array_counter(char **str)
+int	array_counter(char **str)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (str[i] != NULL)
-    {
-        i++;
-    }
-    return (i);
+	i = 0;
+	while (str[i] != NULL)
+		i++;
+	return (i);
 }

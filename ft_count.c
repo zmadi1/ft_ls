@@ -12,17 +12,17 @@
 
 #include "my_flags.h"
 
-int count(char *dir)
+int	count(char *dir)
 {
-	int i;
-	DIR *curdir;
-	struct dirent  *files;
+	int				i;
+	DIR				*curdir;
+	struct dirent	*files;
+
 	i = 0;
 	curdir = opendir(dir);
-	if(!curdir)
-		return 1;
-
-	while((files = readdir(curdir)) != NULL)
+	if (!curdir)
+		return (1);
+	while ((files = readdir(curdir)) != NULL)
 		i++;
 	if (curdir)
 		closedir(curdir);

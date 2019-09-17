@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 14:07:57 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/16 15:43:30 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/17 17:37:21 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,15 @@ char **temporary_function(char **dir, char **temp)
 	{
 		dir[i++] = ft_strdup(temp[j++]);
 	}
+	int w =0;
+
 	dir[i] = NULL;
 	ft_sort(dir);
+	 	while(temp[w])
+{
+	ft_strdel(&temp[w]);
+	w++;
+}
 	return (dir);
 }
 
@@ -76,11 +83,8 @@ char **ft_content(char **new, t_flags *flag, char **dir)
 			new[i++] = ft_strdup(files->d_name);
 			if (flag->flag_ur == '1' && files->d_type == 4 && (ft_strcmp(files->d_name, ".") != 0) && (ft_strcmp(files->d_name, "..") != 0))
 			{
-			
 				temp[j++] = ft_path(files->d_name,*dir);
 				temp[j] = NULL;
-			
-
 				//ft_putendl(ft_path(files->d_name,*dir));
 				// exit(0);
 				// ft_putendl(*dir)

@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 08:38:13 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/16 15:32:44 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/17 17:23:46 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_rights(struct stat mode)
 {
 	char *i;
- 
-	if (!(i = malloc(sizeof(i)* 10)))
+
+	if (!(i = malloc(sizeof(i) * 10)))
 		return ;
 	i[0] = (S_IRUSR & mode.st_mode) ? 'r' : '-';
 	i[1] = (S_IWUSR & mode.st_mode) ? 'w' : '-';
@@ -29,7 +29,7 @@ void	ft_rights(struct stat mode)
 	i[8] = (S_IXOTH & mode.st_mode) ? 'x' : '-';
 	i[9] = '\0';
 	ft_putstr(i);
-	free(i);
+	ft_strdel(&i);
 }
 
 void	handle_date(struct stat s)
@@ -45,49 +45,52 @@ void	handle_date(struct stat s)
 	date[3][5] = '\0';
 	date[4][4] = '\0';
 	ft_putstr(date[3]);
-	free(date);
+	int w =0;
+	while(date[w])
+	{
+		ft_strdel(&date[w]);
+		w++;
+	}
+	ft_strdel(date);
 }
 
 void	group_rights(struct stat ptr)
 {
 	struct group *grp;
 
-	if(!(grp = getgrgid(ptr.st_gid)))
+	if (!(grp = getgrgid(ptr.st_gid)))
 		ft_putnbr(ptr.st_gid);
 	else
 	{
 		ft_putstr(grp->gr_name);
 	}
-	
 	ft_space(ft_count_nbr(ptr.st_size), 6);
 	ft_putnbr(ptr.st_size);
 	ft_putchar(' ');
 }
 
-int usi_rights(char	*ptr, char *dir)
+int		usi_rights(char *ptr, char *dir)
 {
-	struct stat user;
-	struct passwd *parent;
+	struct stat		user;
+	struct passwd	*parent;
 
-	if((ft_strcmp(ptr, dir)) == 0)
-		lstat(ft_path(ptr, "."),&user);
+	if ((ft_strcmp(ptr, dir)) == 0)
+		lstat(ft_path(ptr, "."), &user);
 	else
-		lstat(ft_path(ptr, dir),&user);
+		lstat(ft_path(ptr, dir), &user);
 	ft_space(ft_count_nbr(user.st_nlink), 4);
 	ft_putnbr(user.st_nlink);
 	ft_putchar(' ');
 	parent = getpwuid(user.st_uid);
 	ft_putstr(parent->pw_name);
 	ft_putchar(' ');
-	
 	group_rights(user);
 	handle_date(user);
 	ft_putchar(' ');
 	return (0);
-
 }
 
-void ft_file_info(char **ptr, char *dir)
+void	ft_file_info(char **ptr, char *dir)
 {
 	struct stat checker;
 	int			i;
@@ -96,11 +99,9 @@ void ft_file_info(char **ptr, char *dir)
 	while (ptr[i] != NULL)
 	{
 		lstat(ft_path(ptr[i], dir), &checker);
-		// ft_putstr("========>");
-		// ft_putendl(ft_path(ptr[i], dir));
 		if (S_ISBLK(checker.st_mode))
 			ft_putchar('b');
-		else if(S_ISCHR(checker.st_mode))
+		else if (S_ISCHR(checker.st_mode))
 			ft_putchar('c');
 		else if (S_ISDIR(checker.st_mode))
 			ft_putchar('d');
@@ -110,13 +111,10 @@ void ft_file_info(char **ptr, char *dir)
 			ft_putchar('-');
 		else if (S_ISLNK(checker.st_mode))
 			ft_putchar('l');
-		else if (S_ISSOCK(checker.st_mode))
-			ft_putchar('s');
 		else
 			ft_putchar('?');
 		ft_rights(checker);
-		usi_rights(ptr[i],dir);
-		ft_putendl(ptr[i]);
-		i++;
+		usi_rights(ptr[i], dir);
+		ft_putendl(ptr[i++]);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 10:18:57 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/16 12:02:34 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/17 17:50:19 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	ft_sort(char **new)
 {
+	// free cause you are replacing what was allocated for
+	char *tmp;
 	int		i;
 	int		j;
 	char	*str;
+	
 
 	i = 0;
 	while (new[i] != NULL)
@@ -27,9 +30,12 @@ void	ft_sort(char **new)
 			if (ft_strcmp(new[i], new[j]) > 0)
 			{
 				str = ft_strdup(new[i]);
+				tmp = new[i];
 				new[i] = ft_strdup(new[j]);
-				new[j] = ft_strdup(str);
-				free(str);
+				ft_strdel(&tmp);
+				tmp = new[j];
+				new[j] = str;
+				ft_strdel(&tmp);
 			}
 			j++;
 		}
