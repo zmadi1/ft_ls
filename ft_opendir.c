@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 14:07:57 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/16 15:12:52 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/16 15:43:30 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char **ft_content(char **new, t_flags *flag, char **dir)
 	temp = (char **)malloc(sizeof(char *) * 256);
 	//ft_putendl("1");
 	new = (char **)malloc(sizeof(char *) * count(dir[j]) + 1);
-	ft_putendl("wolrd");
 	//ft_putendl("2");
 	curdir = opendir(*dir);
 	if(!curdir)

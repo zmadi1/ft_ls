@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 16:04:29 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/16 15:12:35 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/16 15:45:49 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
  void ft_protector(char **new, char *dir)
  {
-     ft_putendl("hello");
      if (errno == 2)
     {
         ft_putstr("ft_ls: ");
         ft_putstr(dir);
         ft_putendl(": No such file or directory");
+        exit(0);
     }
     if (errno == 13)
     {

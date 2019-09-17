@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 10:35:20 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/16 15:12:13 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/16 15:43:49 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int main(int ac, char **av)
 				ft_putstr(str[j]);
 				ft_putendl(":");
 			}
-			ft_putendl("its us");
 			new = ft_content(new, flag, &str[j]);
 			i = 0;
 			if (flag->flag_l == '1')
