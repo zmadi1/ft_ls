@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 10:35:20 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/17 17:14:01 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/18 09:18:58 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ char	**arguments_taker(char **str, int argument_counter)
 
 	i = 1;
 	j = 0;
-	s = (char **)malloc(sizeof(char *) * argument_counter * 1000);
+	s = (char **)malloc(sizeof(char *) * argument_counter * (256*256));
 	while (str[i] != NULL)
 	{
 		if (str[i][0] != '-')
 		{
-			s[j] = ft_strdup(&str[i][j]);
+			s[j] = ft_strdup(str[i]);
 			j++;
 		}
 		i++;
@@ -73,7 +73,7 @@ void	ft_jump_argone(char **str, t_flags *flag)
 	i = 0;
 	j = 0;
 	new = NULL;
-	while (str[j] && flag->flag_err == '0')
+	while (str[j] && flag->flag_err == '0' && j < (256*256))
 	{
 		if (array_counter(str) > 1)
 		{
@@ -97,26 +97,26 @@ void	ft_jump_argone(char **str, t_flags *flag)
 }
 }
 
-void	ft_no_arg(char **str, t_flags *flag)
-{
-	int		i;
-	int		j;
-	char	**new;
+// void	ft_no_argument(char **str, t_flags *flag)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	**new;
 
-	i = 0;
-	j = 0;
-	new = NULL;
-	new = ft_content(new, flag, str);
-	while (new[i] != NULL)
-		ft_putendl(new[i++]);
-		i =0;
-	while(new[i])
-	{
-		ft_strdel(&new[i]);
-		i++;
-	}
-	ft_strdel(new);
-}
+// 	i = 0;
+// 	j = 0;
+// 	new = NULL;
+// 	new = ft_content(new, flag, str);
+// 	while (new[i] != NULL)
+// 		ft_putendl(new[i++]);
+// 		i =0;
+// 	while(new[i])
+// 	{
+// 		ft_strdel(&new[i]);
+// 		i++;
+// 	}
+// 	ft_strdel(new);
+// }
 
 int		main(int ac, char **av)
 {
@@ -125,6 +125,7 @@ int		main(int ac, char **av)
 	t_flags *flag;
 	int		i;
 	int		j;
+	//int		x = 0;
 
 	j = 0;
 	// new = NULL;
@@ -135,13 +136,15 @@ int		main(int ac, char **av)
 	ft_fixer(str);
 	if (ac >= 2)
 	{
+		// while (str[x])
+		// 	ft_putendl(str[x++]);
 		check_flags(av, flag);
 		ft_jump_argone(&str[j], flag);
 	}
 	i = 0;
 	if (ac == 1)
 	{
-		ft_no_arg(str, flag);
+		ft_no_argument(str, flag);
 	}
 	int w =0;
 	while(str[w])
@@ -150,6 +153,6 @@ int		main(int ac, char **av)
 		w++;
 	}
 	ft_strdel(str);
-	sleep(10);
+	sleep(100);
 	return (0);
 }
