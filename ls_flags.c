@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 11:50:14 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/18 09:18:20 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/18 10:45:14 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int		check_flags(char **str,t_flags *flags)
 				ft_putstr("\nUse: ls [ - ] [alrtnogR] [file ..]\n");
 				exit(0);
 			}
-			
 		}
 		i++;
 	}

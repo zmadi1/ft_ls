@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 16:04:29 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/18 09:17:11 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/18 14:29:16 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ void ft_protector(char **new, char *dir)
 	{
         new[0] = ft_strdup(dir);
         new[1] = NULL;
-		// ft_strdel(&new[0]);
-		// ft_strdel(&new[1]);
-		// free(new);
 	}
 }
 

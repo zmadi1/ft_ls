@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 13:50:10 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/18 08:27:04 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/18 14:14:00 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int					ft_count_nbr(int i);
 char				*ft_changer(char **ptr);
 void				ft_protector(char **new, char *dir);//,t_flags *flag);
 void				ft_no_argument(char **str, t_flags *flag);
+void				ft_delete(char **ptr);
 
 #endif

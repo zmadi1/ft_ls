@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 08:38:13 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/17 17:23:46 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/18 14:28:02 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,7 @@ void	handle_date(struct stat s)
 	date[3][5] = '\0';
 	date[4][4] = '\0';
 	ft_putstr(date[3]);
-	int w =0;
-	while(date[w])
-	{
-		ft_strdel(&date[w]);
-		w++;
-	}
-	ft_strdel(date);
+	ft_delete(date);
 }
 
 void	group_rights(struct stat ptr)
@@ -73,11 +67,12 @@ int		usi_rights(char *ptr, char *dir)
 {
 	struct stat		user;
 	struct passwd	*parent;
+	char			*str;
 
 	if ((ft_strcmp(ptr, dir)) == 0)
-		lstat(ft_path(ptr, "."), &user);
+		lstat((str = ft_path(ptr, ".")), &user);
 	else
-		lstat(ft_path(ptr, dir), &user);
+		lstat((str = ft_path(ptr, dir)), &user);
 	ft_space(ft_count_nbr(user.st_nlink), 4);
 	ft_putnbr(user.st_nlink);
 	ft_putchar(' ');
@@ -87,6 +82,7 @@ int		usi_rights(char *ptr, char *dir)
 	group_rights(user);
 	handle_date(user);
 	ft_putchar(' ');
+	ft_strdel(&str);
 	return (0);
 }
 
@@ -94,11 +90,12 @@ void	ft_file_info(char **ptr, char *dir)
 {
 	struct stat checker;
 	int			i;
+	char *str;
 
 	i = 0;
 	while (ptr[i] != NULL)
 	{
-		lstat(ft_path(ptr[i], dir), &checker);
+		lstat((str = ft_path(ptr[i], dir)), &checker);
 		if (S_ISBLK(checker.st_mode))
 			ft_putchar('b');
 		else if (S_ISCHR(checker.st_mode))
@@ -116,5 +113,6 @@ void	ft_file_info(char **ptr, char *dir)
 		ft_rights(checker);
 		usi_rights(ptr[i], dir);
 		ft_putendl(ptr[i++]);
+		ft_strdel(&str);
 	}
 }

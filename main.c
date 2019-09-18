@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 10:35:20 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/18 09:18:58 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/18 14:16:55 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,7 @@ void	ft_jump_argone(char **str, t_flags *flag)
 		ft_putchar('\n');
 		j++;
 	}
-	 i =0;
-	while(new[i])
-{
-	ft_strdel(&new[i]);
-	i++;
-}
+	ft_delete(new);
 }
 
 // void	ft_no_argument(char **str, t_flags *flag)
@@ -120,15 +115,12 @@ void	ft_jump_argone(char **str, t_flags *flag)
 
 int		main(int ac, char **av)
 {
-	// char	**new;
 	char	**str;
 	t_flags *flag;
 	int		i;
 	int		j;
-	//int		x = 0;
 
 	j = 0;
-	// new = NULL;
 	str = NULL;
 	flag = ft_flag_ini();
 	str = arguments_taker(av, ac);
@@ -146,13 +138,8 @@ int		main(int ac, char **av)
 	{
 		ft_no_argument(str, flag);
 	}
-	int w =0;
-	while(str[w])
-	{
-		ft_strdel(&str[w]);
-		w++;
-	}
-	ft_strdel(str);
+	ft_delete(str);
+	// free(flag);
 	sleep(100);
 	return (0);
 }

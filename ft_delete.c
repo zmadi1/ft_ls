@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_no_arguments.c                                  :+:      :+:    :+:   */
+/*   ft_delete.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/18 08:05:22 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/18 14:29:40 by zmadi            ###   ########.fr       */
+/*   Created: 2019/09/18 14:11:22 by zmadi             #+#    #+#             */
+/*   Updated: 2019/09/18 14:14:39 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_flags.h"
 
-void	ft_no_argument(char **str, t_flags *flag)
+void    ft_delete(char **ptr)
 {
-	int		i;
-	char	**new;
+    int i;
 
-	i = 0;
-	new = NULL;
-	new = ft_content(new, flag, str);
-	while (new[i] != NULL)
-		ft_putendl(new[i++]);
-	ft_delete(new);
+    i = 0;
+    while (ptr[i])
+    {
+        ft_strdel(&ptr[i++]);
+    }
+    free(ptr);
 }
