@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 08:38:13 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/18 14:28:02 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/19 08:17:53 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_rights(struct stat mode)
 {
-	char *i;
+	char	*i;
 
 	if (!(i = malloc(sizeof(i) * 10)))
 		return ;
@@ -34,7 +34,7 @@ void	ft_rights(struct stat mode)
 
 void	handle_date(struct stat s)
 {
-	char **date;
+	char	**date;
 
 	date = ft_strsplit(ctime(&s.st_mtimespec.tv_sec), ' ');
 	ft_putstr(date[1]);
@@ -50,7 +50,7 @@ void	handle_date(struct stat s)
 
 void	group_rights(struct stat ptr)
 {
-	struct group *grp;
+	struct group	*grp;
 
 	if (!(grp = getgrgid(ptr.st_gid)))
 		ft_putnbr(ptr.st_gid);
@@ -90,7 +90,7 @@ void	ft_file_info(char **ptr, char *dir)
 {
 	struct stat checker;
 	int			i;
-	char *str;
+	char		*str;
 
 	i = 0;
 	while (ptr[i] != NULL)
@@ -102,8 +102,6 @@ void	ft_file_info(char **ptr, char *dir)
 			ft_putchar('c');
 		else if (S_ISDIR(checker.st_mode))
 			ft_putchar('d');
-		else if (S_ISFIFO(checker.st_mode))
-			ft_putchar('p');
 		else if (S_ISREG(checker.st_mode))
 			ft_putchar('-');
 		else if (S_ISLNK(checker.st_mode))

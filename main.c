@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 10:35:20 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/18 14:16:55 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/19 09:07:44 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**arguments_taker(char **str, int argument_counter)
 
 	i = 1;
 	j = 0;
-	s = (char **)malloc(sizeof(char *) * argument_counter * (256*256));
+	s = (char **)malloc(sizeof(char *) * argument_counter * (256 * 256));
 	while (str[i] != NULL)
 	{
 		if (str[i][0] != '-')
@@ -73,7 +73,7 @@ void	ft_jump_argone(char **str, t_flags *flag)
 	i = 0;
 	j = 0;
 	new = NULL;
-	while (str[j] && flag->flag_err == '0' && j < (256*256))
+	while (str[j] && flag->flag_err == '0' && j < (256 * 256))
 	{
 		if (array_counter(str) > 1)
 		{
@@ -92,27 +92,6 @@ void	ft_jump_argone(char **str, t_flags *flag)
 	ft_delete(new);
 }
 
-// void	ft_no_argument(char **str, t_flags *flag)
-// {
-// 	int		i;
-// 	int		j;
-// 	char	**new;
-
-// 	i = 0;
-// 	j = 0;
-// 	new = NULL;
-// 	new = ft_content(new, flag, str);
-// 	while (new[i] != NULL)
-// 		ft_putendl(new[i++]);
-// 		i =0;
-// 	while(new[i])
-// 	{
-// 		ft_strdel(&new[i]);
-// 		i++;
-// 	}
-// 	ft_strdel(new);
-// }
-
 int		main(int ac, char **av)
 {
 	char	**str;
@@ -128,8 +107,6 @@ int		main(int ac, char **av)
 	ft_fixer(str);
 	if (ac >= 2)
 	{
-		// while (str[x])
-		// 	ft_putendl(str[x++]);
 		check_flags(av, flag);
 		ft_jump_argone(&str[j], flag);
 	}
@@ -139,7 +116,5 @@ int		main(int ac, char **av)
 		ft_no_argument(str, flag);
 	}
 	ft_delete(str);
-	// free(flag);
-	sleep(100);
 	return (0);
 }

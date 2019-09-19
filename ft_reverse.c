@@ -6,7 +6,7 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 10:45:33 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/16 12:38:43 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/19 07:58:09 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ int		ft_count_array(char **new)
 	return (a);
 }
 
+char	**ft_reverse_delete(char **str, char **new)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		ft_strdel(&new[i]);
+		new[i] = ft_strdup(str[i]);
+		i++;
+	}
+	return (new);
+}
+
 char	**ft_reverse(char **new)
 {
 	char	**str;
@@ -32,12 +46,9 @@ char	**ft_reverse(char **new)
 	j = ft_count_array(new) - 1;
 	str = (char **)malloc(sizeof(char *) * (j + 2));
 	while (j >= 0)
-	{
-		str[i] = ft_strdup(new[j]);
-		free(new[j]);
-		i++;
-		j--;
-	}
+		str[i++] = ft_strdup(new[j--]);
 	str[i] = NULL;
-	return (str);
+	new = ft_reverse_delete(str, new);
+	ft_delete(str);
+	return (new);
 }

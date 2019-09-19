@@ -6,20 +6,18 @@
 /*   By: zmadi <zmadi@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:11:22 by zmadi             #+#    #+#             */
-/*   Updated: 2019/09/18 14:14:39 by zmadi            ###   ########.fr       */
+/*   Updated: 2019/09/19 08:27:40 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_flags.h"
 
-void    ft_delete(char **ptr)
+void	ft_delete(char **ptr)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (ptr[i])
-    {
-        ft_strdel(&ptr[i++]);
-    }
-    free(ptr);
+	i = 0;
+	while (ptr[i])
+		ft_strdel(&ptr[i++]);
+	free(ptr);
 }
